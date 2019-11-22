@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Vegan Meal Finder</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+    <style>
+		html, body {
+			height: 100%;
+			margin-left: 30px;
+			background-color: #009933;
+			text-align: left;
+			color:#ffffff;
+			font-family: "Arial",sans-serif;
+		}
+		#mapid {
+			width: 600px;
+			height: 400px;
+
+
+		}
+		p {text-align: left;
+			color: #ffffff;
+			font-family: "Arial",sans-serif;
+		}
+		#results {
+			padding-top: 5px;
+			padding-left: 20px;
+			color: black;
+			height: 50%;
+			width: 30%;
+			margin: auto; 
+			font-family: 'Arial',sans-serif;
+			border-radius: 25px;
+			position: absolute;
+			right: 20px;
+			top: 150px;
+		}
+	</style>
+
+	<style> body { padding-left: 150px; } #mapid { height: 50%; width: 50vw; border: 2px solid black; font-family: 'Arial',sans-serif; } </style>
+
+	
+</head>
+<body>
+
+	<h1> Vegan Meal Finder </h1>
+	<p> Locate the nearest vegan restaurants located in your area!</p>
+	<button onclick="calcuatingFood()">Locate restaurants</button>
+	<br>
+	<br>
+	<div id="mapid"></div>
+	<br>
+	<div id='results'></div>
+
+
+<script>
+
+	function calcuatingFood() {
+		setTimeout(function(){ alert("Calcuating... Please wait a moment."); }, 1000);
+		setTimeout(function(){ document.getElementById('results').innerHTML = "<br><b> Simply Indian</b> <br> Address: 25 Tabard St <br> Distance: 4 minute walk, 2 minute drive<br><br><b>The Duck & Jackfruit</b><br> Address: 42 Newington Causeway <br> Distance: 12 minute walk, 4 minute drive <br><br> <b> Pure </b> <br> Address: 8 London Bridge St <br> Distance: 17 minute walk, 6 minute drive <br><br> <b> by CHLOE. </b> <br> Address: 6 Duchess Walk <br> Distance: 17 minute walk, 6 minute drive"; document.getElementById("results").style.backgroundColor = "white"; L.marker([51.5, -0.09]).addTo(mymap)
+			.bindPopup("<b>Hello fellow Vegan!</b><br />You are here.").openPopup();
+
+			L.circle([51.501, -0.09], 800, {
+				color: 'red',
+				fillColor: '#f03',
+				fillOpacity: 0.5
+				}).addTo(mymap).bindPopup("You clicked on me!");
+
+
+				var popup = L.popup(); }, 7000);
+				}
+
+				var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+				L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				maxZoom: 20,
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+					'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				id: 'mapbox.streets'
+				}).addTo(mymap);
+
+</script>
+
+
+
+</body>
+</html>
